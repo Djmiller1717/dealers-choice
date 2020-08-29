@@ -1,5 +1,5 @@
 const Sequelize = require("sequelize")
-const arsenal= new Sequelize('postgres://localhost/...', {
+const db= new Sequelize('postgres://localhost/arsenal', {
     logging: false
 });
 // if deployed
@@ -7,4 +7,4 @@ const arsenal= new Sequelize('postgres://localhost/...', {
 //     logging: false
 // });
 
-// module.exports = 
+module.exports = db
