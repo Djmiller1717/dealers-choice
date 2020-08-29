@@ -2,7 +2,7 @@ const express = require("express")
 const app = express()
 const morgan = require('morgan')
 //require db from /db
-const {db} = require('./db')
+
 
 app.use(morgan('dev'))
 app.use(expres.json())

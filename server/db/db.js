@@ -1,5 +1,5 @@
 const Sequelize = require("sequelize")
-const woodworking = new Sequelize('postgres://localhost/woodworking', {
+const arsenal= new Sequelize('postgres://localhost/...', {
     logging: false
 });
 // if deployed
@@ -7,4 +7,4 @@ const woodworking = new Sequelize('postgres://localhost/woodworking', {
 //     logging: false
 // });
 
-module.exports = woodworking
+// module.exports = 
