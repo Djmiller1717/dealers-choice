@@ -17,10 +17,10 @@ const Player = db.define('player', {
         type: Sequelize.STRING,
         allowNull: false
     },
-    starter: {
-        type: Boolean,
-        defaultValue: false,
-    }
+    // starter: {
+    //     type: Boolean,
+    //     defaultValue: false,
+    // }
     
 })
 

@@ -1,6 +1,12 @@
 //import your db
+const db = require('./db')
+const Player = require('./models/team')
+const syncAndSeed = require('./seed')
 
-//import your models
 //state your model associations (hasOne etc)
 
-//export your db and Models (so they all can be imported from a single central location)
+module.exports = {
+    db,
+    Player,
+    syncAndSeed
+}
