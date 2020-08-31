@@ -14,7 +14,7 @@ app.get('/', (req, res, next) => res.sendFile(path.join(__dirname, '/public/inde
 
 app.get('/api/players', async (req, res, next) => {
     try {
-        let players = await Player.findAll()
+        const players = await Player.findAll()
         res.send(players)
     } catch(err){
         next(err)
@@ -23,7 +23,7 @@ app.get('/api/players', async (req, res, next) => {
 
 app.get('/api/players/:id', async(req, res, next) => {
     try {
-        let player = await Player.findByPk(req.params.id)
+        const player = await Player.findByPk(req.params.id)
         res.send(player)
     } catch(err){
         next(err)
