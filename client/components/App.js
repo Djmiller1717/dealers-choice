@@ -8,30 +8,27 @@ export default class App extends React.Component {
 			players: [],
 			selectedPlayer : {}
 		}
-	this.select = this.select.bind(this)
 	this.singlePlayer = this.singlePlayer.bind(this)
-	this.resetSelect = this.resetSelect.bind(this)
 	}
 	async componentDidMount(){
-		try{
-			let players = await axios.get('/api/players')
-			this.setState({players: players.data})
-		} catch (err){
-			console.log('Problem with Mounting!')
+		const hashLoad = async() => {
+			const id = window.location.hash.slice(1)
+			if (id){
+				let {data} = await axios.get(`/api/players/${id}`)
+				this.setState({
+					selectedPlayer: data
+				})
+			} else {
+				this.setState({
+					selectedPlayer: {}
+				})
+			}
 		}
-	}
-	async select(player){
-		try{
-			let response = await axios.get(`/api/players/${player.id}`)
-			this.setState({
-				selectedPlayer: response.data
-			})
-		} catch (err) {
-			console.log('Problem with Select!')
-		}	
-	}
-	async resetSelect(){
-		this.setState({selectedPlayer: {}})
+		window.addEventListener('hashchange', hashLoad)
+		hashLoad()
+
+		let players = await axios.get('/api/players')
+		this.setState({players: players.data})
 	}
 	allPlayers({players, select}){
 		return(
@@ -39,8 +36,9 @@ export default class App extends React.Component {
 			{players.map( player => {
 				return (
 				<div>
-					<li onClick={() => select(player)} key = {player.id}>{player.name}</li>
-					{/* <li>{player.name}</li> */}
+					<a href= {`#${player.id}`}>
+					<li>{player.name}</li>
+					</a>
 				</div>
 				)
 			}
@@ -52,18 +50,17 @@ export default class App extends React.Component {
 		return(
 			<div>
 				<h1>{this.state.selectedPlayer.name}</h1>
-				<button onClick = {this.resetSelect}>See All Players</button>
+				<a href = '#'>
+				<button>See All Players</button>
+				</a>
 			</div>
 		)
 	}
 	render(){
 		let players = this.state.players
-		// let selectedPlayer = this.state.selectedPlayer
 		return (
 			<div>	
 				{this.state.selectedPlayer.id ?  <this.singlePlayer /> : <this.allPlayers players = {players} select = {this.select}/>}
-				{/* <this.allPlayers players = {players}/> */}
-				{/* <this.singlePlayer /> */}
 			</div>
 		)
 	}
