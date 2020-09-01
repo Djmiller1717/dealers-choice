@@ -47,9 +47,12 @@ export default class App extends React.Component {
 		)
 	}
 	singlePlayer(){
+		const player = this.state.selectedPlayer
 		return(
 			<div>
-				<h1>{this.state.selectedPlayer.name}</h1>
+				<h2>{player.name}</h2>
+				<h3>{`#${player.number}`}</h3>
+				<h3>{player.position}</h3>
 				<a href = '#'>
 				<button>See All Players</button>
 				</a>
