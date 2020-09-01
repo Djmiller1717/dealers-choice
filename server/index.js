@@ -40,7 +40,7 @@ app.get('/api/players/:id', async(req, res, next) => {
 const PORT = 3000
 const init = async function(){
     await syncAndSeed()
-    app.listen(PORT, function(){
+    app.listen(process.env.PORT || PORT, function(){
         console.log(`Server is listening on port ${PORT}`)
     })
 }
