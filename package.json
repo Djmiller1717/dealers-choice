@@ -5,10 +5,10 @@
 	"main": "server/index.js",
 	"scripts": {
 		"test": "mocha \"**/*.spec.js\"",
-		"build": "webpack --mode=development",
+		"build": "webpack",
 		"build:dev": "webpack -w",
 		"start": "node server/index.js",
-		"start:dev": "npm run build && nodemon --ignore client --ignore server/public"
+		"start:dev": "npm run build:dev & nodemon --ignore client --ignore server/public"
 	},
 	"author": "",
 	"license": "ISC",
